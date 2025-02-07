@@ -4,11 +4,43 @@ const express = require('express')
 // Create instance of express system
 const app = express()
 
+const mongoose = require('mongoose')
+
+let databaseURL = ''
+switch (process.env.NODE_ENV?.toLocaleLowerCase()) {
+    case 'test':
+        databaseURL = 'mongodb://localhost:27017/PokemonTeamBuilder-test'
+        break
+    case 'dev':
+    case 'development':
+        databaseURL = 'mongodb://localhost:27017/PokemonTeamBuilder-test'
+        break
+    case 'production':
+    case 'prod':
+        // This should match a variable in the .env or in the deployment platform
+        // so it knows where to find mongodb clouse atlas
+        databaseURL = 'process.env.DATABASE_URL'
+        break
+    default:
+        console.error("Incorrect environment detected!")
+        process.exit()
+        // break
+}
+
+// After figuring out the databaseURL
+// connect to the db using the db URL
+const { connect } = require('./database.js')
+connect(databaseURL)
+
 app.get('/', (request, response) => {
     response.json({
         message: 'Hello world!'
     })
 })
+
+
+
+
 
 const {PokeApiRouter} = require('./controllers/PokeApiController.js')
 app.use('/pokeapi', PokeApiRouter)
