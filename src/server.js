@@ -52,6 +52,9 @@ app.get('/databaseHealth', (request, response) => {
 const {PokeApiRouter} = require('./controllers/PokeApiController.js')
 app.use('/pokeapi', PokeApiRouter)
 
+const { TeamRouter } = require('./controllers/TeamController.js')
+app.use('team', TeamRouter)
+
 
 
 
