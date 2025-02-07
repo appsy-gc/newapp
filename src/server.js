@@ -10,6 +10,12 @@ app.get('/', (request, response) => {
     })
 })
 
+const {PokeApiRouter} = require('./controllers/PokeApiController.js')
+app.use('/pokeapi', PokeApiRouter)
+
+
+
+
 // Wildcard * means "match any route"
 // Put at the end of route declarations
 // to catch anything that does not match an earlier route
@@ -21,11 +27,13 @@ app.get('*', (request, response) => {
     })
 })
 
+// Error handling catcher
+// applies to every route in the server by using .use
 app.use((error, request, response, next) => {
     console.log('Error occurred in the server.')
     console.log(JSON.stringify(error))
     response.json({
-        errors: request.body.errors,
+        // errors: request.body?.errors,
         message: error.message
     })
 })
