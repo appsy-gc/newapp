@@ -1,0 +1,23 @@
+{
+  "name": "newapp",
+  "version": "1.0.0",
+  "description": "New app practicing APIs with Pokemon",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "seed": "node src/utils/seed.js",
+    "wipe": "node src/utils/wipe.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/appsy-gc/newapp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/appsy-gc/newapp/issues"
+  },
+  "homepage": "https://github.com/appsy-gc/newapp#readme"
+}
