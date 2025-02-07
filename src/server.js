@@ -16,6 +16,8 @@ app.use('/pokeapi', PokeApiRouter)
 
 
 
+
+// ERROR HANDLING
 // Wildcard * means "match any route"
 // Put at the end of route declarations
 // to catch anything that does not match an earlier route
