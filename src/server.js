@@ -39,7 +39,14 @@ app.get('/', (request, response) => {
 })
 
 
-
+app.get('/databaseHealth', (request, response) => {
+    response.json({
+        name: mongoose.connection.name,
+        models: mongoose.connection.modelNames(),
+        address: mongoose.connection.host,
+        readyState: mongoose.connection.readyState
+    })
+})
 
 
 const {PokeApiRouter} = require('./controllers/PokeApiController.js')
