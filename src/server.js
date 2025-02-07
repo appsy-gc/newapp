@@ -21,7 +21,7 @@ switch (process.env.NODE_ENV?.toLocaleLowerCase()) {
     case 'prod':
         // This should match a variable in the .env or in the deployment platform
         // so it knows where to find mongodb clouse atlas
-        databaseURL = 'process.env.DATABASE_URL'
+        databaseURL = process.env.DATABASE_URL
         break
     default:
         console.error("Incorrect environment detected!")
