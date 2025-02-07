@@ -4,6 +4,8 @@ const express = require('express')
 // Create instance of express system
 const app = express()
 
+app.use(express.json())
+
 const mongoose = require('mongoose')
 
 let databaseURL = ''
@@ -53,7 +55,7 @@ const {PokeApiRouter} = require('./controllers/PokeApiController.js')
 app.use('/pokeapi', PokeApiRouter)
 
 const { TeamRouter } = require('./controllers/TeamController.js')
-app.use('team', TeamRouter)
+app.use('/team', TeamRouter)
 
 
 
