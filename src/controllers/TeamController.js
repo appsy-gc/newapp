@@ -1,5 +1,7 @@
 const express = require('express')
 const { TeamModel } = require('../models/team')
+const { makeTeam } = require("../middleware/makeTeam");
+const { getPokemonData } = require('../middleware/getPokemonData')
 const router = express.Router()  
 
 // http://localhost:5678/team/[mongo object id]
@@ -27,15 +29,29 @@ router.get(
 );
 
 // http://localhost:5678/team/
+/*
+{
+    userId: "lakjsdklfjadf",
+    pokemon: [
+        'pikashu',
+        'squirtle'
+    ]}
+*/
 router.post(
 	"/",  // route path 
+	// DO NOT WANT validatePokemonNames // only if we have some local copy of pokemon names
+
+	getPokemonData, // fetch data from pokeapi and throw errors on invalid pokemon 
+	makeTeam, // turn provided data and fetched data into a Team document
+	// 
 	async (request, response) => { // route final callback 
-		
-		let newTeam = await TeamModel.create(request.body.teamData);
+		console.log(request.customData.retrievedPokemon.length);
+
+		// let newTeam = await TeamModel.create(request.body.teamData);
 
 		response.json({
-			requestBody: request.body,
-			team: newTeam
+			// requestBody: request.body,
+			team: request.customData.newTeam
 		});
 	}
 );
