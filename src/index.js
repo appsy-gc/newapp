@@ -1,5 +1,4 @@
 // Import configured server and run
-
 const dotenv = require('dotenv')
 dotenv.config()
 

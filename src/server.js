@@ -59,8 +59,6 @@ app.use('/team', TeamRouter)
 
 
 
-
-
 // ERROR HANDLING
 // Wildcard * means "match any route"
 // Put at the end of route declarations
@@ -79,7 +77,6 @@ app.use((error, request, response, next) => {
     console.log('Error occurred in the server.')
     console.log(JSON.stringify(error))
     response.json({
-        // errors: request.body?.errors,
         message: error.message
     })
 })
