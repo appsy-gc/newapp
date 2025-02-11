@@ -32,7 +32,10 @@ switch (process.env.NODE_ENV?.toLocaleLowerCase()) {
 // After figuring out the databaseURL
 // connect to the db using the db URL
 const { connect } = require('./database.js')
-connect(databaseURL)
+if (process.env.NODE_ENV != 'test') {
+    connect(databaseURL)
+}
+// connect(databaseURL)
 
 app.get('/', (request, response) => {
     response.json({
